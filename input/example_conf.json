@@ -1,0 +1,11 @@
+{
+    "duolingo":{
+        "email":"",
+        "password":""
+    },
+    "anki":{
+        "url":"http://localhost:8765",
+        "deckname":"Japanese",
+        "tags":["Duolingo", "Japanese", "N5"]
+    }
+}
