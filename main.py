@@ -34,14 +34,19 @@ if __name__ == '__main__':
     anki = AnkiObj()
     anki_list = anki.read_deck()
     
-    
-    # compare count and add newest words
-    count_dif = len(duo_list) - len(anki_list)
-    
-    if count_dif == 0:
-        print('No cards to import')
-    
-    for i in range(0,count_dif):
+    # add card to deck if not already present
+    for duo_item in duo_list:
         
-        anki.add_to_deck(duo_list[i]['front'],duo_list[i]['back'])
-        print('adding card: {}'.format(duo_list[i]))
+        found = 0
+        for anki_item in anki_list:
+            
+            if duo_item['front'] == anki_item['fields']['Front']['value']:
+                found=1
+                
+        if not found:
+            print('adding card {} to deck'.format(duo_item['front']))
+            anki.add_to_deck(duo_list[i]['front'],duo_list[i]['back'])
+        else:
+            print('{} already found in deck'.format(duo_item['front']))
+    
+    
