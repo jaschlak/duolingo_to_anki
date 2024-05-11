@@ -52,7 +52,7 @@ class SelObj:
                 time.sleep(1)
                 
             except WebDriverException:
-                print("Element is not clickable")
+                log.logger.error("Element is not clickable")
                 break
             
     def create_list(self):
