@@ -15,6 +15,7 @@ Install AnkiConnect Add-on:
 
 from support.selenium_module import SelObj
 from support.anki_module import AnkiObj
+from support.log import LogClass
 import time
 
 from selenium.webdriver.common.by import By
@@ -22,6 +23,8 @@ from selenium.webdriver.support.ui import WebDriverWait as wait
 from selenium.webdriver.support import expected_conditions as EC
 
 if __name__ == '__main__':
+    
+    log = LogClass()
     
     # get words from duo
     sel = SelObj()
@@ -44,9 +47,9 @@ if __name__ == '__main__':
                 found=1
                 
         if not found:
-            print('adding card {} to deck'.format(duo_item['front']))
-            anki.add_to_deck(duo_list[i]['front'],duo_list[i]['back'])
+            log.logger.info('adding card {} to deck'.format(duo_item['front']))
+            anki.add_to_deck(duo_item['front'],duo_item['back'])
         else:
-            print('{} already found in deck'.format(duo_item['front']))
+            log.logger.debug('{} already found in deck'.format(duo_item['front']))
     
     

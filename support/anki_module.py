@@ -4,6 +4,9 @@ import requests
 import json
 
 from support.config import get_configuration
+from support.log import LogClass
+
+log = LogClass()
 
 class AnkiObj:
     
@@ -30,7 +33,7 @@ class AnkiObj:
         if response.ok:
             return  response.json()['result']
         else:
-            print('problem retrieving card ids from anki')
+            log.logger.error('problem retrieving card ids from anki')
         
     def read_deck(self):
         
@@ -49,7 +52,7 @@ class AnkiObj:
         if response.ok:
             return response.json()['result']
         else:
-            print('problem retrieving cards with card ids')
+            log.logger.error('problem retrieving cards with card ids')
             
     
         
@@ -84,9 +87,9 @@ class AnkiObj:
         
         # Check if the request was successful
         if response.status_code == 200:
-            print('Note added successfully!')
+            log.logger.debug('Note added successfully!')
         else:
-            print('Failed to add note:', response.text)
+            log.logger.error('Failed to add note:', response.text)
             
 if __name__ == '__main__':
     
